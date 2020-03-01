@@ -5,4 +5,4 @@ A real time operating system developed on an ARM STM32 Microcontroller.
 
 •	Features include semaphores, interthread communication, and synchronization.
 
-•	Developed in Keil uVision, written in C and assembly.
+•	Developed in Keil uVision, written in C and assembly./
