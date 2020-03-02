@@ -51,7 +51,8 @@ uint8_t osKernelAddThreads(void(*task0)(),void(*task1)(),void(*task2)() ){
 	
 	//initialize PC registers
 	osKernelStackInit(0);
-	TCB_STACK[0][STACK_SIZE-2] = (uint32_t)(task0); //STACK_SIZE-2 points to pc register
+	//STACK_SIZE-2 points to pc register
+	TCB_STACK[0][STACK_SIZE-2] = (uint32_t)(task0);
 	osKernelStackInit(1);
 	TCB_STACK[1][STACK_SIZE-2] = (uint32_t)(task1);
 	osKernelStackInit(2);

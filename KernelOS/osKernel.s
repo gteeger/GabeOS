@@ -25,13 +25,15 @@ SysTick_Handler ;this saves r0-r3,r12,lr,c,psr
 	;choose next thread in cirucular linked list
 	;navigate to second entry in the thread control block
 	;LDR R1, [R1, #4] ;R1 = currentPt->next
-	;STR R1, [R0] ;currentPt = R1
+	;currentPt = R1
+	;STR R1, [R0] 
 	PUSH {R0, LR}
 	;BL osRoundRobinScheduler
 	BL osPeriodicScheduler
 	POP	{R0,LR}
 	LDR R1, [R0]
-	LDR SP,[R1] ;SP = currentPt->stackPt
+	;SP = currentPt->stackPt
+	LDR SP,[R1] 
 	POP {R4-R11}
 	;enable interrupts again
 	CPSIE I
@@ -41,9 +43,10 @@ SysTick_Handler ;this saves r0-r3,r12,lr,c,psr
 ;set the value of the cortex-m stack pointer to the value of the first thread	
 osSchedulerLaunch
 	LDR R0, =currentPt
-	;load what r0 is pointing to into R2
-	LDR R2,[R0] ;R2 = currentPt
-	LDR SP,[R2] ;SP = currentPt->stackPt
+	;R2 = currentPt
+	LDR R2,[R0] 
+	;SP = currentPt->stackPt
+	LDR SP,[R2] 
 	POP {R4-R11}
 	POP {R0-R3}
 	POP {R12}
